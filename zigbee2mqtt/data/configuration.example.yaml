@@ -1,0 +1,12 @@
+# set to false after paring all devices
+permit_join: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt
+  user: mqtt
+serial:
+  adapter: deconz
+  port: /dev/ttyUSB0
+frontend:
+  port: 8080
+homeassistant: true
