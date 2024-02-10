@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "icon": "mdi:lightbulb",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "title": "Schlafzimmer",
+              "cards": [
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.0x003c84fffefad0d6",
+                  "vertical": false,
+                  "hide_state": false,
+                  "show_entity_picture": false,
+                  "name": "Mood"
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "title": "Küche",
+              "cards": [
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.0x70ac08fffee884c6",
+                  "name": "Spüle",
+                  "icon": "mdi:light-flood-down"
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "title": "Wohnzimmer",
+              "cards": [
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.dimmable_lightbulb",
+                  "name": "Decke",
+                  "icon": "mdi:ceiling-light"
+                },
+                {
+                  "type": "tile",
+                  "entity": "light.living_room_fairy_lights",
+                  "name": "Lichterkette"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "icon": "mdi:radiator",
+          "badges": [],
+          "cards": [
+            {
+              "square": false,
+              "type": "grid",
+              "cards": [
+                {
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "climate.0xa4c138a42615e511",
+                  "vertical": true,
+                  "name": "Badezimmer",
+                  "show_entity_picture": false,
+                  "hide_state": false
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.0x00124b002a5d2695_temperature",
+                      "name": " "
+                    },
+                    {
+                      "entity": "sensor.0x00124b002a5d2695_humidity",
+                      "name": " "
+                    }
+                  ],
+                  "title": "Badezimmer"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "climate.0x003c84fffe21eada",
+                  "vertical": true,
+                  "name": "Wohnzimmer",
+                  "show_entity_picture": false,
+                  "hide_state": false
+                },
+                {
+                  "type": "entities",
+                  "entities": [
+                    {
+                      "entity": "sensor.0x00124b002a5d16b3_temperature",
+                      "name": " "
+                    },
+                    {
+                      "entity": "sensor.0x00124b002a5d16b3_humidity",
+                      "name": " "
+                    }
+                  ],
+                  "title": "Küche"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "climate.0x003c84fffe21eb47",
+                  "vertical": true,
+                  "name": "Schlafzimmer",
+                  "show_entity_picture": false,
+                  "hide_state": false
+                },
+                {
+                  "features": [
+                    {
+                      "type": "target-temperature"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "climate.0xa4c13860605fe492",
+                  "vertical": true,
+                  "show_entity_picture": false,
+                  "hide_state": false,
+                  "name": "Arbeitszimmer"
+                }
+              ],
+              "columns": 2
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

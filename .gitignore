@@ -8,3 +8,4 @@ homeassistant/*.log*
 homeassistant/secrets.yaml
 homeassistant/*.db*
 homeassistant/.storage/*
+!homeassistant/.storage/lovelace
