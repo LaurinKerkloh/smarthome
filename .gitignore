@@ -2,6 +2,9 @@ mosquitto/data
 mosquitto/log
 
 zigbee2mqtt/data/*
-config/*
-
 !zigbee2mqtt/data/configuration.example.yaml
+
+homeassistant/*.log*
+homeassistant/secrets.yaml
+homeassistant/*.db*
+homeassistant/.storage/*

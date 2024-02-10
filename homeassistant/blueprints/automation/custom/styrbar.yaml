@@ -1,0 +1,96 @@
+blueprint:
+  name: z2m - IKEA STYRBAR
+  description: "This blueprint is for the IKEA STYRBAR square, 4-button remote when used with zigbee2mqtt.
+  It is for general use so all buttons can be connected to any action of your choice, it repeats the actions on long press."
+  domain: automation
+  input:
+    remote:
+      name: Remote
+      description: IKEA STYRBAR remotes action sensor entity
+      selector:
+        entity:
+          integration: mqtt
+          domain: sensor
+    button_on:
+      name: Upper button (On)
+      description: Action to run when SHORT press on upper button
+      default:
+      selector:
+        action:
+    button_off:
+      name: Lower button (Off)
+      description: Action to run when SHORT press on lower button
+      default:
+      selector:
+        action:
+    button_brightness_move_up:
+      name: Brighness up hold
+      description: Action to repeat while HOLDING upper button
+      default:
+      selector:
+        action:
+    button_brightness_move_down:
+      name: Brightness down hold
+      description: Action to repear while HOLDING lower button
+      default:
+      selector:
+        action:
+
+mode: restart
+trigger:
+  - platform: state
+    entity_id: !input "remote"
+    not_to:
+      - ""
+      - "None"
+      - "brightness_stop"
+      - "arrow_left_release"
+      - "arrow_right_release"
+action:
+  - variables:
+      command: "{{ trigger.to_state.state }}"
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: "{{ command == 'on' }}"
+      sequence: !input "button_on"
+    - conditions:
+      - condition: template
+        value_template: "{{ command == 'off' }}"
+      sequence: !input "button_off"
+    - conditions:
+      - condition: template
+        value_template: "{{ command == 'brightness_move_up' }}"
+      sequence:
+        - repeat:
+            until:
+              - condition: template
+                value_template: "{{ wait.trigger is not none }}"
+            sequence:
+              - repeat:
+                  count: 1
+                  sequence: !input "button_brightness_move_up"
+              - wait_for_trigger:
+                - platform: state
+                  entity_id: sensor.0x003c84fffe266d21_action
+                  to: brightness_stop
+                timeout:
+                    milliseconds: 100
+    - conditions:
+      - condition: template
+        value_template: "{{ command == 'brightness_move_down' }}"
+      sequence:
+        - repeat:
+            until:
+              - condition: template
+                value_template: "{{ wait.trigger is not none }}"
+            sequence:
+              - repeat:
+                  count: 1
+                  sequence: !input "button_brightness_move_down"
+              - wait_for_trigger:
+                - platform: state
+                  entity_id: !input "remote"
+                  to: brightness_stop
+                timeout:
+                  milliseconds: 100

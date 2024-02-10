@@ -1,0 +1,46 @@
+- id: '1707411011751'
+  alias: styrbar logger
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.0x003c84fffe266d21_action
+    not_to:
+  action:
+  - variables:
+      command: '{{ trigger.to_state.state }}'
+  - service: system_log.write
+    data:
+      message: 'Syrbar command: {{ command }}'
+  mode: parallel
+- id: '1707432559743'
+  alias: z2m - IKEA STYRBAR
+  description: ''
+  use_blueprint:
+    path: custom/styrbar.yaml
+    input:
+      remote: sensor.0x003c84fffe266d21_action
+      button_on:
+      - service: light.turn_on
+        metadata: {}
+        data: {}
+        target:
+          device_id: 693beed6b4206eb1c63c1d67965d4ad4
+      button_off:
+      - service: light.turn_off
+        metadata: {}
+        data: {}
+        target:
+          device_id: 693beed6b4206eb1c63c1d67965d4ad4
+      button_brightness_move_up:
+      - service: light.turn_on
+        metadata: {}
+        data:
+          brightness_step_pct: 4
+        target:
+          device_id: 693beed6b4206eb1c63c1d67965d4ad4
+      button_brightness_move_down:
+      - service: light.turn_on
+        target:
+          device_id: 693beed6b4206eb1c63c1d67965d4ad4
+        data:
+          brightness_step_pct: -5

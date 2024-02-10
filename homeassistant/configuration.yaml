@@ -1,0 +1,27 @@
+http:
+  use_x_forwarded_for: true
+  trusted_proxies: 172.20.0.2
+# Loads default set of integrations. Do not remove.
+default_config:
+
+api:
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+group:
+  garmin:
+    name: Garmin
+    entities:
+      - light.0x003c84fffefad0d6
+      - light.0x70ac08fffee884c6
+      - light.dimmable_lightbulb
+      - light.living_room_fairy_lights
+      - sensor.0x00124b002a5d2695_humidity
+      - sensor.0x00124b002a5d2695_temperature
+      - sensor.0x00124b002a5d16b3_humidity
+      - sensor.0x00124b002a5d16b3_temperature
