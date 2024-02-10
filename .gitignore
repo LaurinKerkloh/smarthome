@@ -1,3 +1,4 @@
-mosquitto/*
+mosquitto/data
+mosquitto/log
 zigbee2mqtt/*
 config/*
