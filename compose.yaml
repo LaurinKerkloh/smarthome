@@ -1,0 +1,82 @@
+version: '3.8'
+services:
+  proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+#  acme-companion:
+#    image: nginxproxy/acme-companion
+#    container_name: nginx-proxy-acme
+#    environment:
+#      - DEFAULT_EMAIL=laurin@kerk-loh.de
+#    volumes_from:
+#      - proxy
+#    volumes:
+#      - certs:/etc/nginx/certs:rw
+#      - acme:/etc/acme.sh
+#      - /var/run/docker.sock:/var/run/docker.sock:ro
+#    depends_on:
+#      - proxy
+
+  homeassistant:
+    image: "ghcr.io/home-assistant/home-assistant:stable"
+    restart: unless-stopped
+    volumes:
+      - ./config:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    expose:
+      - 8123
+    environment:
+      VIRTUAL_HOST: assistant.home.kerkloh.com
+      VIRTUAL_PORT: 8123
+
+  mqtt:
+    image: eclipse-mosquitto
+    restart: unless-stopped
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    ports:
+      - 1883:1883
+      - 9001:9001
+
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    volumes:
+      - ./zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    expose:
+      - 8080
+    environment:
+      TZ: Europe/Berlin
+      VIRTUAL_HOST: z2m.home.kerkloh.com
+      VIRTURAL_PORT: 8080
+    devices:
+      - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2471574-if00:/dev/ttyUSB0
+
+volumes:
+  mosquitto-data:
+  mosquitto-log:
+  certs:
+  vhost:
+  html:
+  acme:
+networks:
+  default:
