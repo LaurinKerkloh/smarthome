@@ -1,6 +1,6 @@
 http:
   use_x_forwarded_for: true
-  trusted_proxies: 172.20.0.2
+  trusted_proxies: 172.20.0.5
 # Loads default set of integrations. Do not remove.
 default_config:
 

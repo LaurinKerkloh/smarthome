@@ -44,3 +44,33 @@
           device_id: 693beed6b4206eb1c63c1d67965d4ad4
         data:
           brightness_step_pct: -5
+- id: '1708373485606'
+  alias: Linh left work
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.linh
+    zone: zone.arbeit
+    event: leave
+  condition: []
+  action:
+  - service: notify.mobile_app_laurin_phone
+    metadata: {}
+    data:
+      message: Linh left work
+  mode: single
+- id: '1711199527347'
+  alias: laurin home
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.laurin
+    zone: zone.home
+    event: enter
+  condition: []
+  action:
+  - device_id: 941f36ae66d2d1f6c77d6eed923d11fa
+    domain: mobile_app
+    type: notify
+    message: Laurin ist Zuhause angekommen ❤️
+  mode: single

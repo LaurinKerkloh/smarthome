@@ -18,19 +18,19 @@ services:
       timeout: 5s
       retries: 5
 
-#  acme-companion:
-#    image: nginxproxy/acme-companion
-#    container_name: nginx-proxy-acme
-#    environment:
-#      - DEFAULT_EMAIL=laurin@kerk-loh.de
-#    volumes_from:
-#      - proxy
-#    volumes:
-#      - certs:/etc/nginx/certs:rw
-#      - acme:/etc/acme.sh
-#      - /var/run/docker.sock:/var/run/docker.sock:ro
-#    depends_on:
-#      - proxy
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-acme
+    environment:
+      - DEFAULT_EMAIL=laurin@kerk-loh.de
+    volumes_from:
+      - proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - proxy
 
   homeassistant:
     image: "ghcr.io/home-assistant/home-assistant:stable"
@@ -42,6 +42,7 @@ services:
     expose:
       - 8123
     environment:
+      LETSENCRYPT_HOST: assistant.home.kerkloh.com
       VIRTUAL_HOST: assistant.home.kerkloh.com
       VIRTUAL_PORT: 8123
 

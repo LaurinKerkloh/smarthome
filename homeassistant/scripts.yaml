@@ -1,0 +1,7 @@
+request_location_update:
+  alias: Request location update
+  sequence:
+  - service: notify.mobile_app_laurin_phone
+    data:
+      message: request_location_update
+  mode: single
