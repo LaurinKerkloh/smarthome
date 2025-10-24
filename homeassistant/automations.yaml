@@ -54,10 +54,10 @@
     event: leave
   condition: []
   action:
-  - service: notify.mobile_app_laurin_phone
-    metadata: {}
-    data:
-      message: Linh left work
+  - device_id: 23e32aee7e0e07213931b1b54e315f78
+    domain: mobile_app
+    type: notify
+    message: Linh left work
   mode: single
 - id: '1711199527347'
   alias: laurin home
@@ -69,7 +69,7 @@
     event: enter
   condition: []
   action:
-  - device_id: 941f36ae66d2d1f6c77d6eed923d11fa
+  - device_id: d1c6a89a73c809a46fecd4ec532f6c22
     domain: mobile_app
     type: notify
     message: Laurin ist Zuhause angekommen ❤️

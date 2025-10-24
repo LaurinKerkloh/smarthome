@@ -11,7 +11,6 @@
           "cards": [
             {
               "type": "vertical-stack",
-              "title": "Schlafzimmer",
               "cards": [
                 {
                   "features": [
@@ -20,13 +19,15 @@
                     }
                   ],
                   "type": "tile",
-                  "entity": "light.0x003c84fffefad0d6",
+                  "entity": "light.0x286847fffe062505",
                   "vertical": false,
                   "hide_state": false,
                   "show_entity_picture": false,
-                  "name": "Mood"
+                  "name": "Pilz",
+                  "icon": "mdi:mushroom"
                 }
-              ]
+              ],
+              "title": "Schlafzimmer"
             },
             {
               "type": "vertical-stack",
@@ -42,6 +43,20 @@
                   "entity": "light.0x70ac08fffee884c6",
                   "name": "Spüle",
                   "icon": "mdi:light-flood-down"
+                },
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.0x403059fffe8140e5",
+                  "icon": "mdi:floor-lamp",
+                  "show_entity_picture": false,
+                  "hide_state": false,
+                  "vertical": false,
+                  "name": "Astrid"
                 }
               ]
             },
@@ -66,6 +81,26 @@
                   "name": "Lichterkette"
                 }
               ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "features": [
+                    {
+                      "type": "light-brightness"
+                    }
+                  ],
+                  "type": "tile",
+                  "entity": "light.0x003c84fffefad0d6",
+                  "vertical": false,
+                  "hide_state": false,
+                  "show_entity_picture": false,
+                  "icon": "mdi:weather-night",
+                  "name": "Mood"
+                }
+              ],
+              "title": "Büro"
             }
           ]
         },

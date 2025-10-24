@@ -38,8 +38,8 @@ services:
       - ./homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-    expose:
-      - 8123
+    ports: 
+      - "8123:8123"
     environment:
       LETSENCRYPT_HOST: assistant.home.kerkloh.com
       VIRTUAL_HOST: assistant.home.kerkloh.com

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/house-of-abbey/GarminHomeAssistant/main/config.schema.json",
+  "title": "Home",
+  "items": [
+    {
+      "entity": "light.0x286847fffe062505",
+      "name": "Schlafzimmer Pilz",
+      "type": "toggle"
+    },
+    {
+      "entity": "light.0x003c84fffefad0d6",
+      "name": "Büro Mood",
+      "type": "toggle"
+    },
+    {
+      "name": "Wohnzimmer",
+      "title": "Wohnzimmer",
+      "type": "group",
+      "items": [
+        {
+	      "entity": "light.dimmable_lightbulb",
+	      "name": "Decke",
+	      "type": "toggle"
+	},
+        {
+          "entity": "light.living_room_fairy_lights",
+          "name": "Lichterkette",
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "name": "Küche",
+      "title": "Küche",
+      "type": "group",
+      "items": [
+        {
+	      "entity": "light.0x70ac08fffee884c6",
+	      "name": "Spüle",
+	      "type": "toggle"
+	},
+        {
+          "entity": "light.0x403059fffe8140e5",
+          "name": "Astrid",
+          "type": "toggle"
+        },
+        {
+          "name": "Sensor",
+          "type": "info",
+	  "content": "🌡{{ states('sensor.0x00124b002a5d16b3_temperature') }}°C, 💧{{ states('sensor.0x00124b002a5d16b3_humidity') }}%"
+        }
+      ]
+    },
+        {
+          "name": "Badezimmer",
+          "type": "info",
+	  "content": "🌡{{ states('sensor.0x00124b002a5d2695_temperature') }}°C, 💧{{ states('sensor.0x00124b002a5d2695_humidity') }}%"
+        }
+  ]
+}
