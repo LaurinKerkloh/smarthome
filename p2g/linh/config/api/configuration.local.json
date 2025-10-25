@@ -1,10 +1,4 @@
 {
-  "Api": {
-    "HostUrl": "http://p2g-laurin-api:8080"
-  }, 
-  "WebUI": {
-      "HostUrl": "http://p2glaurin.home.kerkloh.com"
-    },
   "Observability": {
 
     "Prometheus": {

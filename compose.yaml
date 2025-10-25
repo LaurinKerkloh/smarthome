@@ -85,8 +85,8 @@ services:
   p2g-laurin-webui:
     image: philosowaffle/peloton-to-garmin:webui-stable
     user: :p2g
-    ports:
-      - 8002:8080
+    expose:
+      - 8080
     environment:
       TZ: America/Chicago
       P2G_CONFIG_DIRECTORY: /app/config
@@ -97,6 +97,32 @@ services:
     depends_on:
       - p2g-laurin-api
 
+  p2g-linh-api:
+    image: philosowaffle/peloton-to-garmin:api-stable
+    user: :p2g
+    environment:
+      - TZ=Europe/Berlin
+      - P2G_CONFIG_DIRECTORY=/app/config
+    volumes:
+      - ./p2g/linh/config/api/:/app/config
+      - p2g-linh-data:/app/data # recommended for saving settings across restarts
+      - p2g-linh-output:/app/output # optional, if you want access to the generated workout and log files
+
+  p2g-linh-webui:
+    image: philosowaffle/peloton-to-garmin:webui-stable
+    user: :p2g
+    expose:
+      - 8080
+    environment:
+      TZ: America/Chicago
+      P2G_CONFIG_DIRECTORY: /app/config
+      VIRTUAL_HOST: p2glinh.home.kerkloh.com
+      VIRTURAL_PORT: 8080
+    volumes:
+      - ./p2g/linh/config/webui:/app/config
+    depends_on:
+      - p2g-linh-api
+
 volumes:
   mosquitto-data:
   mosquitto-log:
@@ -106,6 +132,8 @@ volumes:
   acme:
   p2g-laurin-data:
   p2g-laurin-output:
+  p2g-linh-data:
+  p2g-linh-output:
 
 
 networks:

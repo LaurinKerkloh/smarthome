@@ -1,9 +1,9 @@
 {
   "Api": {
-    "HostUrl": "http://p2g-laurin-api:8080"
+    "HostUrl": "http://p2g-linh-api:8080"
   }, 
   "WebUI": {
-      "HostUrl": "http://p2glaurin.home.kerkloh.com"
+      "HostUrl": "http://p2glinh.home.kerkloh.com"
     },
   "Observability": {
 
